@@ -31,7 +31,7 @@ Dynamic commads are commands saved in a JSON, used for commands that are continu
  - `delcmd [cmd]` - Delete a command
  - `dyncmdlist` - Get the list of dynamic commands
 
-**NOTE:** You can use a dynamic just with `.command` (command character + command name) if there is not another static command with the same name. So you can use this to create only-text commands with ease.
+**NOTE:** You can use a dynamic just with `;command` (command character + command name) if there is not another static command with the same name. So you can use this to create only-text commands with ease.
 
 Chat Plugins
 ------------
