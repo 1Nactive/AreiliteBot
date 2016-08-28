@@ -1,315 +1,113 @@
-Bot Commands
-====================
+# Areilite Bot
 
-Bot commands are in files of this path. If you want to add more commands just add more files with the specifications mentioned in main README. Commands included in this repository are explained below.
 
-Basic Commands
-------------
+[![Build Status](https://travis-ci.org/Ecuacion/Pokemon-Showdown-Node-Bot.svg)](https://travis-ci.org/Ecuacion/Pokemon-Showdown-Node-Bot)
+[![Dependency Status](https://david-dm.org/Ecuacion/Pokemon-Showdown-Node-Bot.svg)](https://david-dm.org/Ecuacion/Pokemon-Showdown-Node-Bot)
+[![devDependency Status](https://david-dm.org/Ecuacion/Pokemon-Showdown-Node-Bot/dev-status.svg)](https://david-dm.org/Ecuacion/Pokemon-Showdown-Node-Bot#info=devDependencies)
+[![Version](https://img.shields.io/badge/version-0.0.1-orange.svg)](https://github.com/Ecuacion/Pokemon-Showdown-Node-Bot#pokemon-showdown-bot-for-node)
 
-Basic features and some information about the bot.
 
- - `about` - Basic bot info, with the link to this repo.
- - `git` - Link to this repo
- - `version` - Bot version
- - `help` - Get a link to this guide
- - `time` - Current time for Bot
- - `uptime` - Time since the last bot restart
- - `seen [user]` - Latest data from an user
- - `alts [user]` - List of known alts of an user (Alts detedted from namechanges)
- - `say [text]` - Force to say something
 
-Dynamic Commands
-------------
+This is a [Pokemon Showdown](https://github.com/Zarel/Pokemon-Showdown) bot written in JavaScript for [Node](http://nodejs.org/), based on the original Node bot by Ecuacion, and modified by Inactive User.
 
-Dynamic commads are commands saved in a JSON, used for commands that are continuously changing, like forum links or usage stats. Commands for using, creating, modifying and deleting dynamic commands are the following:
+This bot is based on commands and features, which are explained [here](https://github.com/Ecuacion/Pokemon-Showdown-Node-Bot/blob/master/DEVELOPMENT.md). This is intended to ease bot configuration and customization, separating commands in multiple files, multiple features in different folders and merging functions in Global Objects like Bot, CommandParser or Settings. This bot also works in multiple languages at the same time, useful for language rooms.
 
- - `dyn [cmd]` - To call a dynamic command
- - `wall [cmd]` - To call a dynamic command (with announce / wall)
- - `temp [text]` - Set temp var, to create a command
- - `setcmd [cmd]` - Create or modify a command, with `temp` data previosly set
- - `setalias [alias], [cmd]` - Set an alias of an existent dynamic command
- - `delcmd [cmd]` - Delete a command
- - `dyncmdlist` - Get the list of dynamic commands
-
-**NOTE:** You can use a dynamic just with `.command` (command character + command name) if there is not another static command with the same name. So you can use this to create only-text commands with ease.
-
-Chat Plugins
-------------
-
-Misc commands for multiple features:
-
- - `pick [option1], [option2], [...]` - Choose between multiple options
- - `randomanswer` - Get a random answer
- - `joke` - Get a random joke from the local database
- - `quote` - Get a random quote from the local database
- - `regdate (username)` - Get the register date of a Pokemon Showdown account
- - `regtime (username)` - Get the age of a Pokemon Showdown account, useful for check if an account is autoconfirmed
-
-Commands for getting pokemon info:
-
- - `translate [move/item/ability/nature], (source lang), (target lang)` - Command for translating pokemon stuff
- - `poke` or `randompokemon` - Get a random pokemon
- - `gen [poke]` - Get pokemon, item, etc generation
- - `viablemoves [poke]` - Get viable moves from a Pokemon
- - `heavyslam [poke], [poke]` - Get heavyslam base power
- - `priority [poke]` - Get priority moves
- - `boosting [poke]` - Get boosting moves
- - `recovery [poke]` - Get recovery moves
- - `hazards [poke]` - Get hazards moves
+Features included in this package:
+ - **Base:** Basic commands for getting basic information, manage command permissions, languages and dynamic commands (only-text commands useful for giving information).
+ - **Chat-Plugins:** This includes a customizable database of jokes and quotes, pokemon informational commands, smogon-related commands and others like regdate or translate (to translate pokemon stuff into different languages).
+ - **Moderation:** Automated chat moderation for infractions like spam, flood, caps, stretching, etc  This also includes a blacklist and welcome messages called join-phrases.
+ - **Battle:** Automated battle bot for challenges, ladder and tournaments. This also includes teams management commands. Note that this is not an artificial intelligence, so it can't learn stuff and is usually easy to win it.
+ - **Chat Logger:** Stores logs of chat rooms and/or pms. This also includes an optional logs server.
+ - **Tournaments:** A single command for creating, starting and set auto-dq of a tournament automatically. This also includes an optional tournaments leaderboards system.
+ - **Games:** A collection of chat games for your Pokemon Showdown Bot
+ - **Auto Invite:** Automatically sends '/invite [room]' to room auth of a private room when they joins other room with a relation. For example if you have a secondary staff room and you want to get invited when you join lobby.
+ - **Youtube link recognition:** If this feature is enabled in a room, when an user sends a youtube link, the bot sends a message with the title of the video.
+ - **Group Chats:** Some tools for group chats (temporal rooms) such as automated joining and automated roomauth promotion.
  
-Smogon-related commands:
 
- - `usagelink` - Get a link to Smogon official usage stats
- - `usage [pokemon], (tier)` - Get usage stats of a pokemon
- - `usagedata [pokemon], [moves / items / abilities / spreads / teammates], (tier)` - Get usage data (common moves, items, spreads, etc) of a pokemon
- - `suspect (tier)` - Get information about a suspect test
- - `setsuspect [tier], [pokemon being suspected, ...], [link to Smogon]` - Set suspect information
- - `deftier [tier]` - Set default tier for `usage` and `suspect` commands
-
-Commands for managing the local database of jokes and quotes:
-
- - `addquote [id], [text]` - Add a new quote
- - `delquote [id]` - Delete an existing quote
- - `listquotes` - Upload quotes to hastebin
- - `addjoke [id], [text]` - Add a new joke
- - `deljoke [id]` - Delete an existing joke
- - `listjokes` - Upload jokes to hastebin
-
-Administrative Commands
+Installation
 ------------
 
-Commands for controlling the bot and command permissions for chat rooms.
+Pokémon Showdown Bot requires [node.js](http://nodejs.org/) to run. Install the last stable version if you do not have it.
 
- - `custom [text]` - Send something to current room
- - `custom [room] [text]` - Send something to a chat room. Brackets are obligatory if you specify the room. Example of usage: `custom [lobby] Some text here`
- - `pm [user], [text]` - Send a private message
- - `join [room1], [room2], [...]` - Join chat rooms
- - `leave [room1], [room2], [...]` - Leave chat rooms
- - `joinrooms [official/public/all]` - Join all rooms
- - `lang [lang]` - Set the language of the room
- - `settings [cmd], [rank]` - Configure command permissions
- - `battlesettings [permission], [rank]` - Change permissions for battle rooms
+The first step is cloning this repo, install [Git](https://git-scm.com/) if you have not it and use the following command on shell console:
+```
+$ git clone --branch=master git://github.com/Ecuacion/Pokemon-Showdown-Node-Bot.git Pokemon-Showdown-Node-Bot
+```
+You can also download a Zip of this repo and decompress it.
 
-Developing Commands
+Then open a shell console, use `cd` to reach the directory of the bot and install dependencies:
+```
+$ npm install --production
+```
+If you want to use `npm test` for developement, install all dependencies with `npm install`
+
+To configure your bot, copy `config-example.js` to `config.js` and edit that file. You can specify bot login credentials among other things. If you don't specify credentials, the bot will log in a random username started by 'Bot'. Read the [Configuration Guide](https://github.com/Ecuacion/Pokemon-Showdown-Node-Bot/blob/master/CONFIGGUIDE.md) for more information
+
+Now, to start the bot use:
+```
+$ node bot
+```
+
+if you have an old version of `Pokemon Showdown Node Bot` and you want to update it, you can use: 
+```
+git pull https://github.com/Ecuacion/Pokemon-Showdown-Node-Bot.git
+```
+Don't forget to use `npm install --production` after each update to re-install the outdated dependencies.
+
+Configuration
 ------------
 
-Commands for developing (only for excepted users)
+Check the [configuration guide](https://github.com/Ecuacion/Pokemon-Showdown-Node-Bot/blob/master/CONFIGGUIDE.md) for more information.
 
- - `eval` or `js` - Execute arbitrary JavaScript
- - `send` - Send anything to the server
- - `reload [commands/config/features/laguages]` - Hotpatch source files
- - `updategit` - Fast forward from git repo
- - `clearcache` - Clear the cache, for example for reloading the usage data
+**Connection Details**
+ - `Config.server`: Server url, for example main server url is `sim.smogon.com`
+ - `Config.port`: Connection port, Pokemon Showdown default port is `8000`
+ - `Config.serverid`: Server id, main server id is `showdown` for example
+ - `Config.autoReconnectDelay`: If connection gets closed, how much time it is waiting before reconnect
+ - `Config.connectionTimeout`: If connection hang up, the time to check for reconnect
 
-CommandParser developing commands
+**Crashguard**
+ - `Config.crashguard`: If true, write errors to console instead of crashing
 
- - `ignore [user]` - Bot will ignore an user
- - `unignore [user]` - Stop ignoring an user
- - `sleep [room]` - Change the room status to `Sleeping`, to disable bot commands in a room
- - `wake [room]` - Change the room status to `Ready`, to re-enable bot  commands in a room
- - `status` or `roomstatus [room]` - Show the current status. Abbreviations: [c - chat, b - battle][r - ready, s - sleeping][Bot group][p - public, h - hidden]. Example: crup = chat, ready, user, private
+**Watchconfig**
+ - `Config.watchconfig`: If true, config.js is automatically reloaded when it is changed
 
-Commands for terminating the process (for restarting the bot)
+**Login Details**
+ - `Config.nick`: Bot Nickname, if you don't specify a nickname, it will log in a random nickname
+ - `Config.pass`: Password, if needed
+ - `Config.autoReloginDelay`: If it can't login because of server issues, how much time it is waiting before relogin
 
- - `lockdown` - Set lockdown mode, use `endlockdown` to revert it
- - `kill` - End the process after using lockdown
- - `forcekill` - Kill the process
+**Rooms**
+ - `Config.rooms`: Array of rooms to join after login. You can specify a string value: `all` for joining all rooms, `official` for official rooms and `public` for not official rooms 
+ - `Config.privateRooms`: Specify which rooms are private
+ - `Config.initCmds`: Array of commands to send after login
 
-Moderation
-------------
+**Auth Config**
+ - `Config.exceptions`: Specify rank exceptions. Use `userid: true` for full permissions
+ - `Config.ranks`: Array of user groups ordered from lowest to highest auth
+ - `Config.globalPermissions`: Global permissions that cannot be changed with `set`
 
-**Mod Settings:** Use `mod (room - optional), [moderation], [on/off]` to enable or disable moderations.
+**Commands Config**
+ - `Config.commandTokens`: Array of valid command characters. A command character, for example, `.` means `.command` usage
+ - `Config.defaultPermission`: Default permision set for `this.can` in commands permissions
+ - `Config.permissionExceptions`: Exceptions for commands permissions
+ - `Config.botguide`: Bot commands guide link
+ - `Config.pmhelp`: Help message said when users pm the bot with no commands
+ - `Config.ignoreRooms:` Room that will be ignored by CommandParser you you can use commands on those rooms. For example if you want to log the room without interfering with other bots commands. 
 
-**Moderation Exception:** Use `modex [rank/all]` to change moderation exception for a room.
+**Language Config**
+ - `Config.language`: Set default language
 
-**Autoban**
- - `ab [user1], [user2], [...]` - Add users to blacklist
- - `unab [user1], [user2], [...]` - Remove users from blacklist
- - `rab [regex]` - Regex ban
- - `unrab [regex]` - Remove a regex ban
- - `vab` - View blacklist
+**Console Config**
+ - `Config.debug`: Specify which console messages are shown
 
-**Zero Tolerance**
- - `0tol [user]` - Checks if an user is in the zero tolerance list
- - `0tol add, [user1]:[level1], [user2]:[level2], [...]` - Add users to zero tolerance list
- - `0tol delete, [user1], [user2], [...]` - Removeusers from zero tolerance list
- - `vzt` - Upload zero tolerance list to hastebin
+Credits
+-----------
 
-**Banwords and InapropiateWords:** Saying this words means automute. InapropiateWords requires that words are separated.
- - `banword [phrase]` - Add a banword
- - `unbanword [phrase]` - Remove a banword
- - `vbw` - View banword list
- - `inapword [phrase]` - Add an inappropriate word
- - `uninapword [phrase]` - Remove an inappropriate word
- - `viw` - View inapropiate words list
-
-**Joinphrases:** Configure what phrase Bot says when certain user joins a room. This can be spammable, much caution!
- - `joinphrase [enable/disable]` - Enable or disable joinphrases for a room
- - `joinphrase set, [user], [phrase]` - Set a joinphrase
- - `joinphrase delete, [user]` - Remove a joinphrase
- - `vjf` - View joinphrases list
+ - [Inactive User](https://github.com/InactiveUser/) (Owner of Respiratory)
  
-**Note:** Excepted users can use moderation commands in format `command [roomid]Arguments` to set moderation through PM or other room. Example: `ab [lobby]spammer1, spammer2`
+Contributors:
 
-Battle
-------------
-
-Commands for battle feature
-
-**Developing**
- - `evalbattle` - Execute arbitrary JavaScript in a battle context
- - `reloadteams` - Hotpatch teams
- - `reloadbattle` - Hotpatch battle modules
- - `move` - Force a custom move
-
-**Challeges**
- - `blockchallenges` - Block Challenges
- - `unblockchallenges` - Stop blocking challenges
- - `chall [user], [format]` - Send a challenge
- - `challme [format]` - Send a challenge to yourself
-
-**Tournaments Joining**
- - `jointours [on/off]` - Enable or disable tour joining
- - `jointour` - Join a tournament
- - `leavetour` - Leave a tournament
- - `checktour` - Check the tournament (If the bot does not challenge or something)
-
-**Ladder**
- - `searchbattle [format]` - Search a battle and returns the link
- - `ladderstart [format]` - Start laddering (checks every 10 seconds)
- - `ladderstop` - Stop laddering
-
-**Teams**
- - `team add, [name], [format], [http://hastebin.com/raw/example]` - Add a team to Bot teams list
- - `team delete, [name]` - Remove a team from Bot teams list
- - `team get, [id]` - Get a team in exportable format
- - `team check, [id], (user)` - Challenge with a specific team
- - `teamslist` - Upload teams list to Hastebin to view it.
-
-Tournaments
-------------
-
-Commands for Tournaments feature
-
- - `tour` - Start a tournament
- - `tour tier=example, timer=30, users=64, dq=1.5, type=elimination` - Start a tournament with custom and optional parameters
-  - **tier**: Tournament format / tier
-  - **timer**: Max time (in seconds) before starting the tournament
-  - **users**: Max number of users (for singups)
-  - **dq**: Minutes for autodq
-  - **type**: elimination or roundrobin
-  - **scout**: set `scout=off` for enabling scout protection
- - `tourhelp` - Help for `tour command`
- - `tourstart` - Force start a tornament
- - `tourend` - Force end a tornament
-
-Commands for leaderboards system
-
- - `rank (user)` - View users's ranking (points, wins, finals, semifinals, etc)
- - `top` - View the Top5 in the leaderboard
- - `official` - Make a tournament in progress official (to be counted, see config)
- - `unofficial` - Make a tournament in progress unofficial
- - `leaderboards table, [room]` - Upload the leaderboard table to Hastebin
- - `leaderboards reset, [room]` - Reset leaderboards data
- - `leaderboards setconfig, [room], on, [Win points], [Finalist], [SemiFinalist], [Battle win points], [official/all]` - Activate and set leaderboards configuration
- - `leaderboards setconfig, [room], off` - Disable leaderboards system.
- - `leaderboards viewconfig, [room]` - View leaderboards configuration
- - `leaderboards reset, [room]` - Reset leaderboards data
-
-Games
-------------
-
-General commands for managing games:
-
- - `game [Game Name], arg1=value1, arg2=value2...` - Start a game
- - `endgame` - Force end a game
- - `reloadgames` - Alias of `reload feature, games`
-
-**Hangman** and **Poke-Hangman**. Arguments: maxfails (max number of allowed fails, 0 or no specify this argument for infinite), lang (optional only for Poke-Hangman to change the language of the pokemon stuff). Commands:
-
- - `g [word/char]` - To guess words or characters
- - `view` - To view the game status
- - `end` - To force end the game
-
-**Anagrams** and **Poke-Anagrams**. Arguments: games (max number of rounds), points (number of ponts for winning), time (time to answer in seconds), lang (optional only for Poke-Anagrams to change the language of the pokemon stuff). Commands:
-
- - `g [word]` - To guess the words
- - `view` - To view the game status
- - `end` - To force end the game
- 
-**Trivia**. Arguments: games (max number of rounds), points (number of ponts for winning), time (time to answer in seconds). Commands:
-
- - `ta [answer]` - To answer the questions
- - `view` - To view the game status
- - `end` - To force end the game
-
-**BlackJack**. Arguments: time (time for each turn in seconds), maxplayers (max number of players) Commands:
-
- - `in` - To join the game. Use `out` to leave
- - `players` - To view the players list
- - `start` - To start the game
- - `hand` - To view your hand
- - `hit` - To get a new card to your hand
- - `stand` - To finish your turn
- - `end` - To force end the game
-
-**Kunc**. Arguments: games (max number of rounds), points (number of ponts for winning), time (time to answer in seconds). Commands:
-
- - `g [pokemon]` - To guess the pokemon
- - `view` - To view the game status
- - `end` - To force end the game
- 
-**Rock, paper, scissors**. Single command game: `rps [rock/paper/scissors]`
-
-**Ambush**. Arguments: roundtime (time per round). Commands:
-
- - `in` - To join the game. Use `out` to leave
- - `players` - To view the players list
- - `start` - To start the game
- - `fire [user]` - To kill other players
- - `end` - To force end the game
-
-**Pass-The-Bomb**. Arguments: maxplayers (max number of players). Commands:
-
- - `in` - To join the game. Use `out` to leave
- - `players` - To view the players list
- - `start` - To start the game
- - `pass [user]` - To pass the bomb to another user
- - `end` - To force end the game
-
-Youtube
-------------
-
-Commands for Youtube link recognition feature
-
- - `youtube [on/off]` - Enable / Disable YouTube link recognition
-
-Auto-Invite
-------------
-
-Commands for auto-invite feature
-
-  - `reloadroomauth [room]` - Reload roomauth if the autoinvite feature is not working well
-  - `getroomauth [room]` - Upload roomauth to hastebin (dev command)
-
-Group Chats
-------------
-
-Automated Promotion
-
- - `setautorank [on/off]` - Enable or disable automated promotion in a room
- - `autorank [rank/off]` - Set the autopromotion rank for all users when joining the room
- - `autorank [user], [rank/deauth]` - Set the autopromotion rank for a single user
- - `listautorank` - Upload the autopromotion list to Hastebin
-
-Welcome private message. This can be spammable, much caution!
-
- - `wpm [enable / disable]` - Enable or disable this feature in a room. Only for excepted users.
- - `wpm view` - View the welcome private message set in a room
- - `setwpm [message]` - Set the welcome private message for a room
- - `delwpm` - Remove the welcome private message for a room
-
-Developing commands for GroupChats feature
-
- - `ignoregroupchat [groupchat]` - temporarily ignore a groupchat (to leave a groupchat). Then you must edit the config to make it permanent
- - `unignoregroupchat [groupchat]` - unignore a groupchat
+ - [VAQ](https://github.com/vaqps) (Contributed commands feature)
+ - [Andrew Manuel](https://github.com/no15ps) (languages)
