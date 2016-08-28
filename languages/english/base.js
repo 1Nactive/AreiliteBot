@@ -5,7 +5,7 @@ exports.translations = {
 		*/
 		about: {
 			'about': 'I\'m a **Pokemon Showdown Bot** written in JavaScript for Node',
-			'author': 'Author'
+			'author': 'Inactive'
 		},
 		help: {
 			'guide': 'Bot commands guide'
