@@ -105,9 +105,9 @@ Check the [configuration guide](https://github.com/Ecuacion/Pokemon-Showdown-Nod
 Credits
 -----------
 
- - [Inactive User](https://github.com/InactiveUser/) (Owner)
+ - [Inactive User](https://github.com/InactiveUser/) (Owner of Respiratory)
  
 Contributors:
 
- - [VAQ](https://github.com/vaqps) 
- - [Andrew Manuel](https://github.com/no15ps)
+ - [VAQ](https://github.com/vaqps) (Contributed commands feature)
+ - [Andrew Manuel](https://github.com/no15ps) (languages)
