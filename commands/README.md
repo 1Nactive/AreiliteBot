@@ -8,14 +8,14 @@ Basic Commands
 
 Basic features and some information about the bot.
 
- - `about` - Basic bot info, with the link to this repo.
- - `git` - Link to this repo
+ - `about` - Basic bot info, with the link to the original Pokemon Showdown Node Bot repo.
+ - `git` - Link to the original Pokemon Showdown Node Bot repo
  - `version` - Bot version
  - `help` - Get a link to this guide
  - `time` - Current time for Bot
  - `uptime` - Time since the last bot restart
  - `seen [user]` - Latest data from an user
- - `alts [user]` - List of known alts of an user (Alts detedted from namechanges)
+ - `alts [user]` - List of known alts of an user (Alts detected from namechanges)
  - `say [text]` - Force to say something
 
 Dynamic Commands
