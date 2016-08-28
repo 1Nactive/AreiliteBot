@@ -1,62 +1,39 @@
 /*
-	Battle Feature
+	Chatlogger feature
 */
 
-exports.id = 'battle';
-exports.desc = 'Automated battle bot';
+exports.id = 'chatlogger';
+exports.desc = 'Save logs of Pokemon Showdown chat rooms';
 
-var BattleBot = exports.BattleBot = require('./battle-ai/index.js');
+var logManager = require('./log.js');
 
-var TeamBuilder = exports.TeamBuilder = require('./teambuilder.js');
-
-var ChallManager = exports.ChallManager = require('./challenges.js');
-
-var TourManager = exports.TourManager = require('./tournaments.js');
-
-var LadderManager = exports.LadderManager = require('./ladder.js');
+var LogServer = require('./log-server.js');
+if (Config.logServer) {
+	exports.logServer = new LogServer(Config.logServer);
+	exports.logServer.listen();
+}
 
 exports.init = function () {
-	BattleBot.init();
-	TourManager.clearData();
-	TeamBuilder.loadTeamList();
+	return;
 };
 
 exports.parse = function (room, message, isIntro, spl) {
-	switch (spl[0]) {
-		case 'updatechallenges':
-			ChallManager.parse(room, message, isIntro, spl);
-			break;
-		case 'tournament':
-			TourManager.parse(room, message, isIntro, spl);
-			break;
-		case 'rated':
-			LadderManager.reportBattle(room);
-			break;
+	if (!Config.chatLogger || !Config.chatLogger.rooms) return;
+	if (isIntro && !Config.chatLogger.logIntroMessages) return;
+	if (message.charAt(0) === '>') return;
+	if (spl[0] === 'pm') room = 'pm';
+	if (Config.chatLogger.rooms.indexOf(room) < 0) return;
+	if (Config.chatLogger.ignore && spl[0] in Config.chatLogger.ignore) {
+		if (Config.chatLogger.ignore[spl[0]] === true) return;
+		if (typeof Config.chatLogger.ignore[spl[0]] === 'object' && Config.chatLogger.ignore[spl[0]].indexOf(spl[1]) >= 0) return;
 	}
-
-	if (!Bot.rooms[room]) {
-		if (spl[0] !== 'init' || spl[1] !== 'battle') return;
-	} else if (Bot.rooms[room].type !== "battle") return;
-
-	try {
-		BattleBot.receive(room, message, isIntro);
-	} catch (e) {
-		errlog(e.stack);
-		error("BattleBot crash");
-	}
-};
-
-exports.getInitCmds = function () {
-	return BattleBot.tryJoinAbandonedBattles();
-};
-
-exports.readyToDie = function () {
-	var battles = Object.keys(BattleBot.battles);
-	if (battles.length) return ("There are " + battles.length + " battles in progress");
+	logManager.log(room, message, isIntro);
 };
 
 exports.destroy = function () {
-	LadderManager.destroy();
-	BattleBot.destroy();
+	try {
+		if (exports.logServer) exports.logServer.destroy();
+	} catch (e) {}
+	logManager.destroy();
 	if (Features[exports.id]) delete Features[exports.id];
 };
