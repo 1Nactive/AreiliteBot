@@ -44,9 +44,9 @@ exports.watchconfig = true;
 * Login Details
 */
 
-exports.nick = 'Areilite';
+exports.nick = 'Areilite'; //You can use another username if you wish
 
-exports.pass = 'quran2000';
+exports.pass = ;
 
 exports.autoReloginDelay = 60 * 1000;
 
@@ -54,7 +54,7 @@ exports.autoReloginDelay = 60 * 1000;
 * Rooms to join
 */
 
-exports.rooms = ['techcode', 'battledome', 'math', 'help', 'joim'];
+exports.rooms = ['lobby', 'joim'];
 
 /*
 * exports.rooms = 'all'; //For joining all rooms
@@ -78,7 +78,7 @@ exports.initCmds = ['|/avatar 37']; // Other commands (avatar, blockchallenges, 
 */
 
 exports.exceptions = {
- 'inactiveuser': true, 'vaq': true, 'notinactiveuser': true, 'inactive': true	// 'userid': true
+ 	// 'userid': true
 };
 
 /*
@@ -86,18 +86,19 @@ exports.exceptions = {
 * Example:
 *
 * exports.exceptions = {
-*	'ecuacion': true,
+*	'inactive': true,
 *	'excepted': true
 * };
 *
 */
 
-exports.ranks = ['+', '\u2605', '%', '@', '#', '&', '~'];
+exports.ranks = ['+', '\u2605', '%', '@', '*', '#', '&', '~'];
 
 exports.globalPermissions = {
 	'voice': '+', //Min rank to broadcast in a server
 	'driver': '%', //Min rank to mute. Also min staff rank
 	'moderator': '@', //Min rank to ban
+	'bot': '*', //Rank that is used for bots
 	'roomowner': '#', //Rank for using room settings commands like set, lang, mod...
 	'admin': '~' //Rank for using global admin commands
 };
@@ -357,7 +358,7 @@ exports.logServer = {
 	users: {
 		'admin': {
 			name: 'Inactive User',
-			pass: 'quran2000',
+			pass: '',
 			access: {'room1': 1, 'room2': 1}
 		}
 	},
@@ -396,8 +397,8 @@ exports.groupchats = {};
 exports.groupChatTryJoinInterval = 60 * 1000;
 
 /* Test example
-exports.groupchats['groupchat-ecuacion-test'] = {
-	toJoin: ['/join groupchat-ecuacion-test'],
+exports.groupchats['groupchat-inactive-test'] = {
+	toJoin: ['/join groupchat-inactive-test'],
 	onJoin: ['Hi guys!'],
 	onLeave: []
 };
