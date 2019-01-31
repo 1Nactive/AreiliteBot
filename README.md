@@ -1,5 +1,5 @@
 # Areilite Bot
-#THIS HAS BEEN DISCONTINUED AS OF 30/01/2019
+# THIS HAS BEEN DISCONTINUED AS OF 30/01/2019
 
 [![Build Status](https://travis-ci.org/Ecuacion/Pokemon-Showdown-Node-Bot.svg)](https://travis-ci.org/Ecuacion/Pokemon-Showdown-Node-Bot)
 [![Dependency Status](https://david-dm.org/Ecuacion/Pokemon-Showdown-Node-Bot.svg)](https://david-dm.org/Ecuacion/Pokemon-Showdown-Node-Bot)
