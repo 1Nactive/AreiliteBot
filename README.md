@@ -105,7 +105,7 @@ Check the [configuration guide](https://github.com/InactiveUser/AreiliteBot/blob
 Credits
 -----------
 
- - [Inactive User](https://github.com/InactiveUser/) (Owner of Respiratory)
+ - [1nactive](https://github.com/1nactive/) (Owner of Respiratory)
  
 Contributors:
 
