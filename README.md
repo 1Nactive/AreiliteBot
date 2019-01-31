@@ -1,5 +1,5 @@
 # Areilite Bot
-
+#THIS HAS BEEN DISCONTINUED AS OF 30/01/2019
 
 [![Build Status](https://travis-ci.org/Ecuacion/Pokemon-Showdown-Node-Bot.svg)](https://travis-ci.org/Ecuacion/Pokemon-Showdown-Node-Bot)
 [![Dependency Status](https://david-dm.org/Ecuacion/Pokemon-Showdown-Node-Bot.svg)](https://david-dm.org/Ecuacion/Pokemon-Showdown-Node-Bot)
@@ -102,12 +102,4 @@ Check the [configuration guide](https://github.com/InactiveUser/AreiliteBot/blob
 **Console Config**
  - `Config.debug`: Specify which console messages are shown
 
-Credits
------------
 
- - [Inactive User](https://github.com/InactiveUser/) (Owner of Respiratory)
- 
-Contributors:
-
- - [VAQ](https://github.com/vaqps) (Contributed commands feature)
- - [Andrew Manuel](https://github.com/no15ps) (languages)
